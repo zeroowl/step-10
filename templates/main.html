@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Step 10</title>
+</head>
+<body>
+<br>
+{% if user %}
+ Добро пожаловать {{ user.nickname }}    <a href="{{logouturl}}"> выйти</a>
+{% else %}
+ <a href="{{loginurl}}">войти</a>
+{% endif %}
+<p>
+Форма ответа на вопрросы 10 Шага .
+</p>
+ <form action="/saveResults" method="post" >
+ {% for question in questions %}
+ <br>
+     {% ifequal question.type 'bool' %}
+<FIELDSET>
+  <LEGEND>{{ question.text }}</LEGEND>
+
+  <INPUT name="{{question.key}}"
+         type="radio"
+         value="Yes" >Да
+  <INPUT name="{{question.key}}"
+         type="radio"
+         value="No" >Нет
+
+
+ </FIELDSET>
+     {% else %}
+       <FIELDSET>
+  <LEGEND>{{ question.text }}</LEGEND>
+
+      <textarea name = "{{question.key}}" COLS=40 ROWS=6 >  </TEXTAREA>
+ </FIELDSET>
+     {% endifequal %}
+ {% endfor %}
+
+
+{% if user %}
+<br><input type="submit" value="Сохранить сегодняшний самоанализ"/>
+{% else %}
+  <br>Вы не зарегестрированы, поэтому не можете сохранить свои данные.
+  <br>
+  Для сохранения данных и последующего анализа вы можете    <a href="{{loginurl}}">войти</a>   использую свою запись гмайл
+
+{% endif %}
+</form>
+</body>
+</html>
