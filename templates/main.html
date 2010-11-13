@@ -9,6 +9,8 @@
 <br>
 {% if user %}
  Добро пожаловать {{ user.nickname }}    <a href="{{logouturl}}"> выйти</a>
+<br>
+ <a href="/showMyResults"> Посмотреть историю своих ответов</a>
 {% else %}
  <a href="{{loginurl}}">войти</a>
 {% endif %}
@@ -35,7 +37,7 @@
        <FIELDSET>
   <LEGEND>{{ question.text }}</LEGEND>
 
-      <textarea name = "{{question.key}}" COLS=40 ROWS=6 >  </TEXTAREA>
+      <textarea name = "{{question.key}}" COLS=40 ROWS=6 ></TEXTAREA>
  </FIELDSET>
      {% endifequal %}
  {% endfor %}
