@@ -1,0 +1,25 @@
+
+body {
+  margin : 0;
+  padding : 0;
+  border-color : #cc0000;
+  background-color : #ffffff;
+  color : #000000;
+}
+
+#sidebar {
+  position : absolute;
+  left : 0;
+  width : 150px;
+  margin-left : 10px;
+  margin-top : 20px;
+  color : #000000;
+  padding : 3px;
+}
+
+#content {
+  top : 0px;
+  margin : 0px 25% 0 165px;
+  padding : 3px;
+  color : #000000;
+}

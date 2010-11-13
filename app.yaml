@@ -8,8 +8,13 @@ handlers:
   static_dir: console/app/view/static
 - url: /console.*
   script: console/app/console.py
+- url: /stylesheets
+  static_dir: stylesheets
+
+
 - url: .*
   script: main.py
+
 
 builtins:
 - datastore_admin: on
