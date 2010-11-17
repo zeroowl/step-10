@@ -6,6 +6,33 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
+from django.utils import translation
+from cookies import Cookies
+
+class I18NRequestHandler(webapp.RequestHandler):
+
+  def initialize(self, request, response):
+
+    webapp.RequestHandler.initialize(self, request, response)
+
+    self.request.COOKIES = Cookies(self)
+    self.request.META = os.environ
+    self.reset_language()
+
+  def reset_language(self):
+
+    # Decide the language from Cookies/Headers
+    language = translation.get_language_from_request(self.request)
+    translation.activate(language)
+    self.request.LANGUAGE_CODE = translation.get_language()
+
+    # Set headers in response
+    self.response.headers['Content-Language'] = translation.get_language()
+#    translation.deactivate()
+
+class changeLanguageHandler(I18NRequestHandler):
+    def get(self):
+
 
 class saveResultsHandler(webapp.RequestHandler):
     def post(self):
@@ -53,7 +80,7 @@ class saveResultsHandler(webapp.RequestHandler):
         answer.answer = answerText
         return answer
 
-class MainHandler(webapp.RequestHandler):
+class MainHandler(I18NRequestHandler):
     def get(self):
         user = users.get_current_user()
 

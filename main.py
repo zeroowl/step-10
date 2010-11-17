@@ -14,16 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
-
 from views import *
+
+import os
+import sys
+from google.appengine.ext.webapp import template
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from django.conf import settings
+# Force Django to reload settings
+settings._target = None
 
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/initdb',initdbHandler),
                                           ('/saveResults',saveResultsHandler),
                                           ('/showMyResults',showMyResultsHandler),
+                                          ('/changeLanguage',changeLanguageHandler),
+
                                           ],
                                          debug=True)
     util.run_wsgi_app(application)

@@ -1,0 +1,15 @@
+To build the .po file
+
+PYTHONPATH=~/python/gae/google_appengine/lib/django/ ~/python/gae/google_appengine/lib/django/django/bin/make-messages.py -l en
+
+To update
+PYTHONPATH=~/python/gae/google_appengine/lib/django/ ~/python/gae/google_appengine/lib/django/django/bin/make-messages.py -a
+
+
+To compile messages
+
+PYTHONPATH=~/python/gae/google_appengine/lib/django/ ~/python/gae/google_appengine/lib/django/django/bin/compile-messages.py
+
+
+
+http://blog.yjl.im/2009/02/using-django-i18n-in-google-app-engine.html
